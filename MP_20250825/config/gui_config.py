@@ -1,0 +1,2 @@
+# GUI MSG 번호 맵핑
+SYS_TO_GUI_MSG_NO = {0x7B05: 0, 0x7B06: 1, 0x7A01: 2}

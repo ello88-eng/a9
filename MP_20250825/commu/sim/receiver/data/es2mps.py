@@ -1,0 +1,62 @@
+from dataclasses import dataclass, field
+import numpy as np
+
+
+@dataclass
+class SimulationObjInfo:
+    timestamp: int
+    avs_ids: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_lats: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_lons: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_alts: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_vel_n: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_vel_e: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_vel_d: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_heading: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_pitchs: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_rolls: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+
+    fov_horzs: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fov_verts: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    rel_azim_angs: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    rel_elev_angs: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    slant_ranges: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+
+    plf_lats_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_lons_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_alts_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_vel_n_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_vel_e_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_vel_d_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_heading_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_pitchs_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    plf_rolls_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fov_horzs_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fov_verts_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    rel_azim_angs_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    rel_elev_angs_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    slant_ranges_with_error: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+
+    fr_center_lats: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fr_center_lons: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fr_center_elevs: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fp_lats_1: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fp_lons_1: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fp_lats_2: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fp_lons_2: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fp_lats_3: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fp_lons_3: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fp_lats_4: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    fp_lons_4: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+
+    trg_ids: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_types: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_lats: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_lons: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_alts: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_pos_x: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_pos_y: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_pos_z: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_roll: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_pitch: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
+    trg_yaw: np.ndarray = field(default_factory=lambda: np.zeros((1,)))
