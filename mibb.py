@@ -386,38 +386,55 @@ def create_test_shapes():
 
 
 def demo_multi_inscribed_bbox():
-    """데모 실행"""
-    test_cases = create_test_shapes()
-    
-    for nx, ny, obs_pos, name in test_cases:
-        print(f"\n{'='*50}")
-        print(f"Testing: {name}")
-        print(f"{'='*50}")
-        
-        # 파라미터 설정
-        min_width, min_height = 8, 6  # 로봇 제약 조건
-        robot_count = 4
-        
-        # bbox 패킹 실행
-        optimal_bboxes = multi_inscribed_bbox_packing(
-            nx, ny, obs_pos, min_width, min_height, robot_count,
-            time_limit_seconds=5
-        )
-        
-        # 결과 시각화
-        visualize_multi_bbox_result(nx, ny, obs_pos, optimal_bboxes, f"Result: {name}")
-        
-        # 상세 정보 출력
-        print(f"\nDetailed Results:")
-        total_coverage = 0
-        for i, bbox in enumerate(optimal_bboxes):
-            print(f"BBox {i+1}: {bbox.width}×{bbox.height}, "
-                  f"Coverage: {bbox.coverage:.3f}, "
-                  f"Boundary violation: {bbox.boundary_violation:.3f}, "
-                  f"Score: {bbox.score:.3f}")
-            total_coverage += bbox.coverage
-        
+    """데모 실행: 큰 사각형(open space) 박스 예제만 사용"""
+    # 그리드 크기
+    nx, ny = 60, 40
+
+    # 큰 사각형 open space 정의 (이 사각형 내부만 비어 있고, 바깥은 장애물)
+    # 원하는 크기로 조절 가능
+    rect_min_col, rect_min_row = 8, 6
+    rect_max_col, rect_max_row = 51, 33  # 포함 범위
+
+    # 장애물 인덱스 구성: 사각형 내부가 아닌 모든 칸을 장애물로 처리
+    obs_pos = []
+    for i in range(ny):
+        for j in range(nx):
+            if not (rect_min_col <= j <= rect_max_col and rect_min_row <= i <= rect_max_row):
+                obs_pos.append(i * nx + j)
+
+    name = "Large Rectangle Open Space"
+
+    print(f"\n{'='*50}")
+    print(f"Testing: {name}")
+    print(f"{'='*50}")
+
+    # 로봇/박스 최소 크기 등 파라미터
+    min_width, min_height = 8, 6  # 로봇 제약 조건
+    robot_count = 4
+
+    # bbox 패킹 실행
+    optimal_bboxes = multi_inscribed_bbox_packing(
+        nx, ny, obs_pos, min_width, min_height, robot_count,
+        time_limit_seconds=5
+    )
+
+    # 결과 시각화
+    visualize_multi_bbox_result(nx, ny, obs_pos, optimal_bboxes, f"Result: {name}")
+
+    # 상세 정보 출력
+    print(f"\nDetailed Results:")
+    total_coverage = 0
+    for i, bbox in enumerate(optimal_bboxes):
+        print(f"BBox {i+1}: {bbox.width}×{bbox.height}, "
+              f"Coverage: {bbox.coverage:.3f}, "
+              f"Boundary violation: {bbox.boundary_violation:.3f}, "
+              f"Score: {bbox.score:.3f}")
+        total_coverage += bbox.coverage
+
+    if len(optimal_bboxes) > 0:
         print(f"Average coverage: {total_coverage / len(optimal_bboxes):.3f}")
+    else:
+        print("No bboxes selected.")
 
 
 if __name__ == "__main__":
